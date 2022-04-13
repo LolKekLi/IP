@@ -27,6 +27,8 @@ public class Agent : MonoBehaviour
 
     public virtual void Update()
     {
+        Debug.Log($"{_steering.angular} {_steering.linear}");
+        
         var deltaTime = Time.deltaTime;
         
         var displacement = velocity * deltaTime;
@@ -75,7 +77,7 @@ public class Agent : MonoBehaviour
         _steering = GetPrioritySteering();
         _groups.Clear();
 
-        _steering = new Steering();
+        //_steering = new Steering();
     }
 
     private Steering GetPrioritySteering( )

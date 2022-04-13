@@ -38,10 +38,8 @@ public class Pursue : Seek
             prediction = distance / speed;
         }
 
-        var position = target.transform.position;
-        position = targetAux.transform.position;
-        position += targetAgent.velocity * prediction;
-        target.transform.position = position;
+        target.transform.position = targetAux.transform.position;
+        target.transform.position += targetAgent.velocity * prediction;
 
         return base.GetSteering();
     }
