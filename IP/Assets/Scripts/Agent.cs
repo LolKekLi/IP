@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
@@ -8,15 +9,19 @@ public class Agent : MonoBehaviour
     public float rotation;
     public float maxRotation;
     public float maxAngularAccel;
-
+    public float priorityThreshold = 0.2f;
+    
     public Vector3 velocity;
 
     protected Steering _steering = null;
-    
+
+    private Dictionary<int, List<Steering>> _groups;
     private void Start()
     {
         velocity = Vector3.zero;
         _steering = new Steering();
+
+        _groups = new Dictionary<int, List<Steering>>();
     }
 
     public virtual void Update()
@@ -66,12 +71,43 @@ public class Agent : MonoBehaviour
             velocity = Vector3.zero;
         }
 
+        _steering = GetPrioritySteering();
+        _groups.Clear();
+
         _steering = new Steering();
     }
 
-
-    public void SetStreering(Steering steering)
+    private Steering GetPrioritySteering( )
     {
-        _steering = steering;
+        Steering steering = new Steering();
+        var sqrThreshold = priorityThreshold * priorityThreshold;
+
+        foreach (var group in _groups.Values)
+        {
+            steering = new Steering();
+
+            foreach (var singleSteering in group)
+            {
+                steering.linear += singleSteering.linear;
+                steering.angular += singleSteering.angular;
+            }
+
+            if (steering.linear.sqrMagnitude > sqrThreshold || Mathf.Abs(steering.angular) > priorityThreshold)
+            {
+                return steering;
+            }
+        }
+
+        return null;
+    }
+    
+    public void SetSteering(Steering steering, int priority)
+    {
+        if (!_groups.ContainsKey(priority))
+        {
+            _groups.Add(priority, new List<Steering>());
+        }
+        
+        _groups[priority].Add(steering);
     }
 }
