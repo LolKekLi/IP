@@ -27,8 +27,6 @@ public class Agent : MonoBehaviour
 
     public virtual void Update()
     {
-        Debug.Log($"{_steering.angular} {_steering.linear}");
-        
         var deltaTime = Time.deltaTime;
         
         var displacement = velocity * deltaTime;
@@ -53,11 +51,16 @@ public class Agent : MonoBehaviour
 
     public virtual void LateUpdate()
     {
+        if (_steering == null)
+        {
+            return;
+        }
+        
         var deltaTime = Time.deltaTime;
 
         velocity += _steering.linear * deltaTime;
         rotation += _steering.angular * deltaTime;
-
+        
         if (velocity.magnitude > maxSpeed)
         {
             velocity.Normalize();
@@ -73,10 +76,11 @@ public class Agent : MonoBehaviour
         {
             velocity = Vector3.zero;
         }
-
+        
         _steering = GetPrioritySteering();
         _groups.Clear();
-
+        
+        
         //_steering = new Steering();
     }
 
@@ -84,6 +88,8 @@ public class Agent : MonoBehaviour
     {
         Steering steering = new Steering();
         var sqrThreshold = priorityThreshold * priorityThreshold;
+
+        var transformName = gameObject.transform.name;
 
         foreach (var group in _groups.Values)
         {
@@ -100,7 +106,7 @@ public class Agent : MonoBehaviour
                 return steering;
             }
         }
-
+        
         return null;
     }
     

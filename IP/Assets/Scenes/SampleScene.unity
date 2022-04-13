@@ -1025,10 +1025,11 @@ GameObject:
   - component: {fileID: 496481049}
   - component: {fileID: 496481048}
   - component: {fileID: 496481047}
+  - component: {fileID: 496481052}
   - component: {fileID: 496481046}
   m_Layer: 0
   m_Name: Agent
-  m_TagString: Untagged
+  m_TagString: Agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1137,14 +1138,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496481045}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -29.97, y: 1.006, z: -4.4}
+  m_LocalRotation: {x: -0, y: 0.13912751, z: -0, w: 0.99027455}
+  m_LocalPosition: {x: -44.19, y: 1.006, z: 0.96927756}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 15.995, z: 0}
+--- !u!114 &496481052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 496481045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33b3c73e6a0f470f8061d6aece103704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  priority: 1
+  target: {fileID: 1948981892}
 --- !u!1 &588203927
 GameObject:
   m_ObjectHideFlags: 0
@@ -2612,9 +2627,10 @@ GameObject:
   - component: {fileID: 1948981895}
   - component: {fileID: 1948981894}
   - component: {fileID: 1948981893}
+  - component: {fileID: 1948981897}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Agent
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2695,3 +2711,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1948981897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1948981892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5603c5edad13434c8760b337b528af66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 0
+  maxAccel: 0
+  orientation: 0
+  rotation: 0
+  maxRotation: 0
+  maxAngularAccel: 0
+  priorityThreshold: 0.2
+  velocity: {x: 0, y: 0, z: 0}
