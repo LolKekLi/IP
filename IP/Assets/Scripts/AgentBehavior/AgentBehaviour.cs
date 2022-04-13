@@ -4,12 +4,6 @@ using UnityEngine;
 [RequireComponent(typeof(Agent))]
 public class AgentBehaviour : MonoBehaviour
 {
-    // public float maxSpeed;
-    // public float maxAccel;
-    // public float maxRotation;
-    // public float maxAngularAccel;
-    //public float weight = 1.0f;
-
     public int priority = 1;
     
     public GameObject target = null;

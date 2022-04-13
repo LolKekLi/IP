@@ -1,4 +1,5 @@
-﻿public class Seek : AgentBehaviour
+﻿//Стремится
+public class Seek : AgentBehaviour
 {
     public override Steering GetSteering()
     {

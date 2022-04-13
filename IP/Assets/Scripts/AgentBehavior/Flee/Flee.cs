@@ -1,4 +1,5 @@
-﻿public class Flee : AgentBehaviour
+﻿//Бежать
+public class Flee : AgentBehaviour
 {
     public override Steering GetSteering()
     {

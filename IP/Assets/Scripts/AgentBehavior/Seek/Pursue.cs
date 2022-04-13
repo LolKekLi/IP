@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Преследовать
+using UnityEngine;
 
 public class Pursue : Seek
 {

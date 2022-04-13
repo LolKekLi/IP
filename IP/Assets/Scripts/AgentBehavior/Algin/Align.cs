@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Выровнять
+using UnityEngine;
 
 public class Align : AgentBehaviour
 {

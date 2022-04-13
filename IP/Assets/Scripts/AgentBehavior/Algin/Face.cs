@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿//Лицо
+using UnityEngine;
 
 public class Face : Align
 {

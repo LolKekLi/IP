@@ -1,30 +1,33 @@
-﻿public class Arrive : AgentBehaviour
+﻿//Покинуть
+
+public class Leave : AgentBehaviour
 {
-    public float targetRadius;
-    public float slowradius;
-    public float timeToTarget = 0.1f;
+    public float escapeRadius;
+    public float dangerRadius;
+    public float timeToTarget;
 
     public override Steering GetSteering()
     {
         Steering steering = new Steering();
-        var direction = target.transform.position - transform.position;
+        var direction = transform.position -  target.transform.position;
         var distance = direction.magnitude;
-        var targetSpeed = 0f;
-
-        if (distance < targetRadius)
+        var reduce = 0f;
+        
+        if (distance > dangerRadius)
         {
             return steering;
         }
 
-        if (distance > slowradius)
+        if (distance < escapeRadius)
         {
-            targetSpeed = _agent.maxSpeed;
+            reduce = 0f;
         }
         else
         {
-            targetSpeed = _agent.maxSpeed * distance / slowradius;
+            reduce = distance / dangerRadius * _agent.maxSpeed;
         }
 
+        var targetSpeed = _agent.maxSpeed - reduce;
         var desiredVelocity = direction;
         desiredVelocity.Normalize();
         desiredVelocity *= targetSpeed;

@@ -13,9 +13,10 @@ public class Agent : MonoBehaviour
     
     public Vector3 velocity;
 
-    protected Steering _steering = null;
+    private Steering _steering = null;
 
     private Dictionary<int, List<Steering>> _groups;
+
     private void Start()
     {
         velocity = Vector3.zero;
@@ -61,12 +62,12 @@ public class Agent : MonoBehaviour
             velocity *= maxSpeed;
         }
 
-        if (_steering.angular == 0)
+        if (_steering.angular == 0f)
         {
-            rotation = 0;
+            rotation = 0f;
         }
 
-        if (_steering.linear.sqrMagnitude == 0)
+        if (_steering.linear.sqrMagnitude == 0f)
         {
             velocity = Vector3.zero;
         }
