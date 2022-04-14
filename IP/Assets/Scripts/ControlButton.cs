@@ -15,7 +15,7 @@ public class ControlButton : MonoBehaviour
     public void Prepare(StateType type, Action onClickAction)
     {
         var button = GetComponent<Button>();
-        _text.text = $"{type}";
+        _text.text = $"{GetNameByType(type)}";
         
         var buttonImage = button.image;
         (buttonImage.color, _disableColor) = (_disableColor, buttonImage.color);
@@ -27,5 +27,38 @@ public class ControlButton : MonoBehaviour
 
             onClickAction?.Invoke();
         });
+    }
+
+    private string GetNameByType(StateType type)
+    {
+        switch (type)
+        {
+            case StateType.Pursue:
+                return "Преследовать";
+            
+            case StateType.Evade:
+                return "Избегать";
+            
+            case StateType.Seek:
+                return "Стремиться";
+            
+            case StateType.Flee:
+                return "Бежать";
+            
+            case StateType.Arrive:
+                return "Достигнуть цели";
+            
+            case StateType.Leave:
+                return "Уход от погони";
+            
+            case StateType.Face:
+                return "Смотреть на цель";
+            
+            case StateType.Wander:
+                return "Блуждание вокруг";
+            
+            default:
+                return $"{type} Неизветсная функция";
+        }
     }
 }

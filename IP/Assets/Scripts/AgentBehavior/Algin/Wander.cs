@@ -8,9 +8,10 @@ public class Wander : Face
     
     public override StateType Type => StateType.Wander;
 
-    public override void Prepare(GameObject agent)
+    public override void Awake()
     {
-        base.Prepare(agent);
+        base.Awake();
+        
         target = new GameObject();
         target.transform.position = transform.position;
     }
