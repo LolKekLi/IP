@@ -1,11 +1,8 @@
-﻿//Лицо
-
-using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Face : Align
 {
-    protected GameObject targetAux = null;
+    protected GameObject _targetAux = null;
 
     public override StateType Type => StateType.Face;
     
@@ -13,7 +10,7 @@ public class Face : Align
     {
         base.Prepare(agent);
         target = new GameObject();
-        targetAux = target;
+        _targetAux = target;
         target.AddComponent<Agent>();
     }
 
@@ -24,7 +21,7 @@ public class Face : Align
 
     public override Steering GetSteering()
     {
-        var direction = targetAux.transform.position - transform.position;
+        var direction = _targetAux.transform.position - transform.position;
 
         if (direction.magnitude > 0f)
         {
