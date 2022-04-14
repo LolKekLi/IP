@@ -5,14 +5,16 @@ public class Wander : Face
     public float offset;
     public float radius;
     public float rate;
+    
+    public override StateType Type => StateType.Wander;
 
-    public override void Awake()
+    public override void Prepare(GameObject agent)
     {
+        base.Prepare(agent);
         target = new GameObject();
         target.transform.position = transform.position;
-        base.Awake();
     }
-
+    
     public override Steering GetSteering()
     {
         Steering steering = new Steering();

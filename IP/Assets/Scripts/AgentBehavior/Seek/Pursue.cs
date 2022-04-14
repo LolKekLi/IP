@@ -7,11 +7,13 @@ public class Pursue : Seek
     
     private GameObject targetAux;
     private Agent targetAgent;
-
-    public override void Awake()
+    
+    public override StateType Type => StateType.Pursue;
+    
+    public override void Prepare(GameObject agent)
     {
-        base.Awake();
-
+        base.Prepare(agent);
+        
         targetAgent = target.GetComponent<Agent>();
         targetAux = target;
         target = new GameObject();

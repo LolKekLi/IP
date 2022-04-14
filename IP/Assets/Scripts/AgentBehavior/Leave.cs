@@ -6,6 +6,8 @@ public class Leave : AgentBehaviour
     public float dangerRadius;
     public float timeToTarget;
 
+    public override StateType Type => StateType.Leave;
+
     public override Steering GetSteering()
     {
         Steering steering = new Steering();

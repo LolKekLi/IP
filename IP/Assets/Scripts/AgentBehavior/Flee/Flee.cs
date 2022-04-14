@@ -1,6 +1,8 @@
 ﻿//Бежать
 public class Flee : AgentBehaviour
 {
+    public override StateType Type => StateType.Flee;
+
     public override Steering GetSteering()
     {
         var steering = new Steering();

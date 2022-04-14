@@ -5,6 +5,8 @@ public class Arrive : AgentBehaviour
     public float slowradius;
     public float timeToTarget = 0.1f;
 
+    public override StateType Type => StateType.Arrive;
+
     public override Steering GetSteering()
     {
         Steering steering = new Steering();

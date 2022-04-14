@@ -6,9 +6,14 @@ public class AgentBehaviour : MonoBehaviour
 {
     public int priority = 1;
     
-    public GameObject target = null;
-    
+    protected GameObject target = null;
     protected Agent _agent;
+
+    public virtual StateType Type
+    {
+        get;
+        private set;
+    }
 
     public virtual void Awake()
     {
@@ -18,6 +23,11 @@ public class AgentBehaviour : MonoBehaviour
     private void Update()
     {
         _agent.SetSteering(GetSteering(), priority);
+    }
+    
+    public virtual void Prepare(GameObject agent)
+    {
+        target = agent;
     }
 
     public Vector3 GetOriAsVec(float orientation)

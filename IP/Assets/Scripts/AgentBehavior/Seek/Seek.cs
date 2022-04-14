@@ -1,6 +1,8 @@
 ﻿//Стремится
 public class Seek : AgentBehaviour
 {
+    public override StateType Type => StateType.Seek;
+    
     public override Steering GetSteering()
     {
         var steering = new Steering();

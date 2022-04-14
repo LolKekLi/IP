@@ -4,6 +4,9 @@ public class AvoidWall : Seek
 {
     public float avoidDistance;
     public float lookAhead;
+    
+    public override StateType Type => StateType.AvoidWall;
+
 
     public override void Awake()
     {

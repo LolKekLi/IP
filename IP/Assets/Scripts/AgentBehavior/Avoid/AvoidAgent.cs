@@ -5,6 +5,8 @@ public class AvoidAgent : AgentBehaviour
     public float collisionRadius = 0.4f;
     private GameObject[] targets;
 
+    public override StateType Type => StateType.AvoidAgent;
+
     private void Start()
     {
         targets = GameObject.FindGameObjectsWithTag("Agent");

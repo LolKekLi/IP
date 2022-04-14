@@ -7,10 +7,12 @@ public class Evade : Flee
     private GameObject targetAux;
     private Agent targetAgent;
 
-    public override void Awake()
+    public override StateType Type => StateType.Evade;
+    
+    public override void Prepare(GameObject agent)
     {
-        base.Awake();
-
+        base.Prepare(agent);
+        
         targetAgent = target.GetComponent<Agent>();
         targetAux = target;
         target = new GameObject();

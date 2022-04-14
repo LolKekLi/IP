@@ -7,6 +7,8 @@ public class Align : AgentBehaviour
     public float slowRadius;
     public float timeToTarget = 0.1f;
 
+    public override StateType Type => StateType.Algin;
+
     public override Steering GetSteering()
     {
         Steering steering = new Steering();

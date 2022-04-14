@@ -1,16 +1,20 @@
 ﻿//Лицо
+
 using UnityEngine;
 
 public class Face : Align
 {
     protected GameObject targetAux = null;
+    
+    public override StateType Type => StateType.Face;
+    
 
     public override void Awake()
     {
         base.Awake();
         Destroy(target);
     }
-
+    
     public override Steering GetSteering()
     {
         var direction = targetAux.transform.position-transform.position;

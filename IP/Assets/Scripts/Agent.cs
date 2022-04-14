@@ -53,6 +53,7 @@ public class Agent : MonoBehaviour
     {
         if (_steering == null)
         {
+            _steering = GetPrioritySteering();
             return;
         }
         
@@ -78,10 +79,7 @@ public class Agent : MonoBehaviour
         }
         
         _steering = GetPrioritySteering();
-        _groups.Clear();
-        
-        
-        //_steering = new Steering();
+        _groups.Clear(); 
     }
 
     private Steering GetPrioritySteering( )
