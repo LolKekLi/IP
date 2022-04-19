@@ -60,6 +60,9 @@ public class ControlButton : MonoBehaviour
             case StateType.PathFollower:
                 return "Следование маршруту";
             
+            case StateType.AvoidAgent:
+                return "Избегать агентов";
+            
             default:
                 return $"{type} Неизветсная функция";
         }

@@ -38,6 +38,8 @@ public class AvoidAgent : AgentBehaviour
             {
                 continue;
             }
+            
+            Debug.Log($"{timeToCollision} {shortestTime}");
 
             if (timeToCollision > 0f && timeToCollision < shortestTime)
             {
