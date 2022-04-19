@@ -97,6 +97,11 @@ namespace Project
 
         private void OnDrawGizmos()
         {
+            if (nodes == null)
+            {
+                return;
+            }
+        
             if (nodes.Count <= 2)
             {
                 return;

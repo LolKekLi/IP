@@ -1,11 +1,17 @@
 ﻿//Выровнять
+
+using System;
+using Project;
 using UnityEngine;
 
 public class Align : AgentBehaviour
 {
-    public float targetRadius;
-    public float slowRadius;
-    public float timeToTarget = 0.1f;
+    [SerializeField]
+    private float targetRadius;
+    [SerializeField]
+    private float slowRadius;
+    
+    private float timeToTarget = 0.1f;
 
     public override StateType Type => StateType.Algin;
 
@@ -17,13 +23,14 @@ public class Align : AgentBehaviour
         rotation = MapToRange(rotation);
 
         var rotationSize = Mathf.Abs(rotation);
-        
+
         var targetRotation = 0f;
-        
+
         if (rotationSize < targetRadius)
         {
             return steering;
         }
+
 //TODO:Стрынные мувы
         if (rotationSize > slowRadius)
         {
@@ -46,5 +53,14 @@ public class Align : AgentBehaviour
         }
 
         return steering;
+    }
+
+    protected virtual void OnDrawGizmos()
+    {
+        var offsetY = 0.5f;
+        
+        GizmosHelper.DrawRadius(transform, targetRadius, Color.green, offsetY);
+
+        GizmosHelper.DrawRadius(transform, slowRadius, Color.red, offsetY);
     }
 }

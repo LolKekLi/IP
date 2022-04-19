@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Project;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -21,8 +21,6 @@ public class Wander : Face
         target.transform.position = transform.position;
     }
     
-    private Vector3 tPos = Vector3.zero;
-    
     public override Steering GetSteering()
     {
         Steering steering = new Steering();
@@ -33,7 +31,6 @@ public class Wander : Face
         var targetPostion = (_offset * orientationVec) + position;
 
         targetPostion += (GetOriAsVec(targetOrientation) * _radius);
-        tPos = targetPostion;
         _targetAux.transform.position = targetPostion;
 
         steering = base.GetSteering();
@@ -43,13 +40,8 @@ public class Wander : Face
         return steering;
     }
 
-    private void OnDrawGizmos()
+    protected override void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-        
-        Gizmos.DrawWireSphere(transform.position, _radius);
-        
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, tPos);
+        GizmosHelper.DrawRadius(transform, _radius, Color.yellow, 0.5f);
     }
 }

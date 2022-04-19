@@ -16,7 +16,7 @@ public class UiAgentController : MonoBehaviour
 
             var stateType = agentBehaviours[i].Type;
             
-            controlButton.Prepare(stateType, () =>
+            controlButton.Prepare(agentBehaviours[i], () =>
             {
                 simpleAgentController.ToggleState(stateType);
             });

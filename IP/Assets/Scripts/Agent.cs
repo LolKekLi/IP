@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
@@ -10,7 +11,7 @@ public class Agent : MonoBehaviour
     public float maxRotation;
     public float maxAngularAccel;
     public float priorityThreshold = 0.2f;
-    
+
     public Vector3 velocity;
 
     private Steering _steering = null;
@@ -28,9 +29,9 @@ public class Agent : MonoBehaviour
     public virtual void Update()
     {
         var deltaTime = Time.deltaTime;
-        
+
         var displacement = velocity * deltaTime;
-        
+
         orientation += rotation * deltaTime;
 
         if (orientation < 0)
@@ -56,12 +57,12 @@ public class Agent : MonoBehaviour
             _steering = GetPrioritySteering();
             return;
         }
-        
+
         var deltaTime = Time.deltaTime;
 
         velocity += _steering.linear * deltaTime;
         rotation += _steering.angular * deltaTime;
-        
+
         if (velocity.magnitude > maxSpeed)
         {
             velocity.Normalize();
@@ -77,12 +78,12 @@ public class Agent : MonoBehaviour
         {
             velocity = Vector3.zero;
         }
-        
+
         _steering = GetPrioritySteering();
-        _groups.Clear(); 
+        _groups.Clear();
     }
 
-    private Steering GetPrioritySteering( )
+    private Steering GetPrioritySteering()
     {
         Steering steering = new Steering();
         var sqrThreshold = priorityThreshold * priorityThreshold;
@@ -104,17 +105,24 @@ public class Agent : MonoBehaviour
                 return steering;
             }
         }
-        
+
         return null;
     }
-    
+
     public void SetSteering(Steering steering, int priority)
     {
         if (!_groups.ContainsKey(priority))
         {
             _groups.Add(priority, new List<Steering>());
         }
-        
+
         _groups[priority].Add(steering);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Debug.DrawLine(transform.position, velocity);
+        Debug.DrawLine(transform.position, new Vector3(orientation, 0, 10));
     }
 }

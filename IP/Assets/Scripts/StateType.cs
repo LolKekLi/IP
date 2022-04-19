@@ -10,5 +10,6 @@
     AvoidAgent,
     AvoidWall,
     Leave,
-    Seek
+    Seek,
+    PathFollower
 }

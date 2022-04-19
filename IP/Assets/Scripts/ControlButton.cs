@@ -12,10 +12,10 @@ public class ControlButton : MonoBehaviour
     [SerializeField]
     private TextMeshProUGUI _text = null;
 
-    public void Prepare(StateType type, Action onClickAction)
+    public void Prepare(AgentBehaviour agentBehaviour, Action onClickAction)
     {
         var button = GetComponent<Button>();
-        _text.text = $"{GetNameByType(type)}";
+        _text.text = $"{GetNameByType(agentBehaviour.Type)} приоритет {agentBehaviour.priority}";
         
         var buttonImage = button.image;
         (buttonImage.color, _disableColor) = (_disableColor, buttonImage.color);
@@ -56,6 +56,9 @@ public class ControlButton : MonoBehaviour
             
             case StateType.Wander:
                 return "Блуждание вокруг";
+            
+            case StateType.PathFollower:
+                return "Следование маршруту";
             
             default:
                 return $"{type} Неизветсная функция";

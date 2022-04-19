@@ -1,29 +1,36 @@
-﻿using System;
-using Project;
+﻿using Project;
 using UnityEngine;
 
 public class PathFollower : Seek
 {
-    public Path path;
-    public float pathOffset = 0f;
-    private float currentParam;
+    [SerializeField]
+    private Path _path;
+    [SerializeField]
+    private float _pathOffset = 0f;
+    
+    private float _currentParam;
     
     private Vector3 _currentPathPoint = Vector3.zero;
-
-    public override void Awake()
+    
+    public override StateType Type => StateType.PathFollower;
+    
+    public override void Prepare(GameObject agent)
     {
-        base.Awake();
-
+        base.Prepare(agent);
+        
         target = new GameObject();
-        currentParam = 0f;
+        target.transform.position = agent.transform.position;
+        
+        target.transform.name = "Path";
+        _currentParam = 0f;
     }
 
     public override Steering GetSteering()
     {
-        currentParam = path.GetParam(transform.position, currentParam);
-        float targetParam = currentParam + pathOffset;
-        _currentPathPoint = path.GetPosition(targetParam);
-        target.transform.position = path.GetPosition(targetParam);
+        _currentParam = _path.GetParam(transform.position, _currentParam);
+        float targetParam = _currentParam + _pathOffset;
+        _currentPathPoint = _path.GetPosition(targetParam);
+        target.transform.position = _path.GetPosition(targetParam);
 
         return base.GetSteering();
     }

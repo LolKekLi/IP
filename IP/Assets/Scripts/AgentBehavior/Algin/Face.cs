@@ -10,8 +10,10 @@ public class Face : Align
     {
         base.Prepare(agent);
         target = new GameObject();
+        target.transform.position = agent.transform.position;
         _targetAux = target;
         target.AddComponent<Agent>();
+        target.transform.name = "Face";
     }
 
     private void OnDestroy()
