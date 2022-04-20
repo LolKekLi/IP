@@ -1,9 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class Agent : MonoBehaviour
 {
+    [SerializeField]
+    private bool _offGizmos = false;
+
+    [SerializeField]
+    private Projectile _projectilePrefab = null;
+
     public float maxSpeed;
     public float maxAccel;
     public float orientation;
@@ -28,6 +33,19 @@ public class Agent : MonoBehaviour
 
     public virtual void Update()
     {
+        if (Input.GetButtonDown("Fire1"))
+        {
+            if (_projectilePrefab == null)
+            {
+                return;
+            }
+
+            var position = transform.position;
+            var instantiate = Instantiate(_projectilePrefab, position, Quaternion.identity);
+
+            instantiate.Fire(position);
+        }
+
         var deltaTime = Time.deltaTime;
 
         var displacement = velocity * deltaTime;
@@ -121,8 +139,12 @@ public class Agent : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.magenta;
-        Debug.DrawLine(transform.position, velocity);
-        Debug.DrawLine(transform.position, new Vector3(orientation, 0, 10));
+        if (_offGizmos)
+        {
+            return;
+        }
+
+        Debug.DrawLine(transform.position, velocity * 10, Color.blue);
+        // Debug.DrawLine(transform.position, new Vector3(orientation, 0, 10));
     }
 }

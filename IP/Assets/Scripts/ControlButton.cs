@@ -63,6 +63,15 @@ public class ControlButton : MonoBehaviour
             case StateType.AvoidAgent:
                 return "Избегать агентов";
             
+            case StateType.AvoidWall:
+                return "Избегать стены";
+            
+            case StateType.Algin:
+                return "Algin";
+            
+            case StateType.Jump:
+                return "Jump";
+            
             default:
                 return $"{type} Неизветсная функция";
         }

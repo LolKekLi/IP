@@ -3,14 +3,27 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    [SerializeField]
     private bool _set = false;
+
     private Vector3 _firePos;
+
+    [SerializeField]
     private Vector3 _direction;
+
+    [SerializeField]
     private float _speed;
+
+    [SerializeField]
     private float _timeElapsed;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            Set(transform.position, _direction, _speed);
+        }
+
         if (!_set)
         {
             return;
@@ -133,5 +146,10 @@ public class Projectile : MonoBehaviour
         landingPos.z = _firePos.z + _direction.z * _speed * time;
 
         return landingPos;
+    }
+
+    public void Fire(Vector3 startPos)
+    {
+        Set(startPos, _direction, _speed);
     }
 }

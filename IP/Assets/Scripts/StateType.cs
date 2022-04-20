@@ -11,5 +11,6 @@
     AvoidWall,
     Leave,
     Seek,
-    PathFollower
+    PathFollower,
+    Jump
 }

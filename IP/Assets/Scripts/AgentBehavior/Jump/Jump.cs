@@ -16,6 +16,8 @@ public class Jump : VelocityMatch
 
     private List<AgentBehaviour> behaviours;
 
+    public override StateType Type => StateType.Jump;
+
     public override void Awake()
     {
         base.Awake();

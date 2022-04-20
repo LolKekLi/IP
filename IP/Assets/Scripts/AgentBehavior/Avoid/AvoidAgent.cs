@@ -39,8 +39,6 @@ public class AvoidAgent : AgentBehaviour
                 continue;
             }
             
-            Debug.Log($"{timeToCollision} {shortestTime}");
-
             if (timeToCollision > 0f && timeToCollision < shortestTime)
             {
                 shortestTime = timeToCollision;
@@ -62,7 +60,7 @@ public class AvoidAgent : AgentBehaviour
         }
         else
         {
-            firstRelativePos = firstTarget.transform.position;
+            firstRelativePos += firstRelativeVel * shortestTime;
         }
 
         firstRelativePos.Normalize();

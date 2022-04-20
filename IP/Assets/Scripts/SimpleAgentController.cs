@@ -9,6 +9,7 @@ public class SimpleAgentController : MonoBehaviour
     [SerializeField]
     private GameObject _target = null;
 
+    [SerializeField]
     private AgentBehaviour[] _agentBehaviours = null;
 
     private void Start()
