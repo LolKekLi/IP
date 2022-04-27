@@ -1,18 +1,31 @@
+using System;
 using Tree;
 using UnityEngine;
 
 public class ColorDecision : Decision
 {
     [SerializeField]
-    private KeyCode _code = default;
+    private bool _true = default;
     
-    public override Action GetBranch()
+    private Transform _activeNode = null;
+    
+    public override DecisionTreeNode GetBranch()
     {
-        if (Input.GetKeyDown(_code))
+        if (_true)
         {
+            _activeNode = nodeTrue.transform;
             return nodeTrue;
         }
 
+        _activeNode = nodeFalse.transform;
         return nodeFalse;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (_activeNode != null)
+        {
+            Gizmos.DrawLine(transform.position, _activeNode.position);
+        }
     }
 }

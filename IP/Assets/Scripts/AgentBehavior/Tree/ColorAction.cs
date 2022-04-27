@@ -11,7 +11,7 @@ namespace Tree
         
         protected override void DoAction()
         {
-            _material.color = Color.red;
+            _material.color = _color;
         }
     }
 }
